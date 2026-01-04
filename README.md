@@ -11,7 +11,7 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 ## Contents
 
 ### Commands
-- [Comprehensive Command Suite](commands/README.md) - 12 production-ready slash commands for Python, web dev, DevOps, context engineering, QA, and GitHub integration
+- [Comprehensive Command Suite](commands/README.md) - Production-ready slash commands for context engineering, QA, GitHub integration, and utilities
 - **Context Engineering Workflow** - Research-Plan-Execute workflow with memory-bank integration
 - **Fagan Inspection** - Formal code inspection for defect analysis without fixes
 - **Context Compact** - Intelligently compress context when approaching token limits
@@ -99,9 +99,6 @@ See [VALIDATOR_README.md](VALIDATOR_README.md) for complete documentation.
 
 #### `commands/` - Slash Commands
 Organized into subdirectories by category:
-- `python/` - Python development commands
-- `web/` - Web development commands
-- `devops/` - DevOps and infrastructure commands
 - `context engineering/` - Context engineering workflow (Research-Plan-Execute)
 - `quality-assurance/` - QA and testing commands
 - `integration/` - Third-party integration commands
@@ -117,10 +114,9 @@ Organized into subdirectories by function:
 - `performance/` - Performance optimization agents
 
 #### `hooks/` - Claude Code Hooks
-Organized by purpose:
 - `security/` - Security validation hooks
-- `formatting/` - Code formatting hooks
-- `notification/` - Notification hooks
+- `auto-formatter.sh` - Code formatting hook
+- `README.md` - Hook documentation
 
 #### `skills/` - Claude Skills
 - `ontological-documentation/` - Ontological documentation skill

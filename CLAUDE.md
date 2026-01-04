@@ -66,3 +66,11 @@ When contributing or editing:
 - Keep content practical and actionable
 - Document with clear examples
 - Focus on productivity and efficiency
+
+## Important Notes
+
+### GitHub URL Format
+The GitHub username for this repository is intentionally `alchemiststudiosDOTai` (literally "DOT" instead of a dot). This is **not a typo** - the actual GitHub URL is `https://github.com/alchemiststudiosDOTai/...`. When referencing the repository in wget commands or links, preserve this exact format.
+
+### Repository Structure Note
+The directory structure documented in this file may not reflect the current state of the repository. For the most accurate structure, verify actual directories using filesystem tools. The README and this file were created during earlier phases of development and may reference planned but not-yet-created subdirectories.
