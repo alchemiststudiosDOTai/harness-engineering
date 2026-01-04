@@ -11,14 +11,29 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 ## Contents
 
 ### Commands
-- [Comprehensive Command Suite](commands/README.md) - Production-ready slash commands for context engineering, QA, GitHub integration, and utilities
-- **Context Engineering Workflow** - Research-Plan-Execute workflow with memory-bank integration
-- **Fagan Inspection** - Formal code inspection for defect analysis without fixes
-- **Context Compact** - Intelligently compress context when approaching token limits
-- **Linear Continue Debugging** - Systematic debugging approach for Linear issues
-- **Linear Continue Work** - Resume work on Linear issues by understanding current state
-- **CodeRabbitAI Issue Analysis** - Normalize GitHub issues by requesting structured analysis from @coderabbitai
-- **Phase Planner** - Strategic project planning with phases and milestones
+- [Comprehensive Command Suite](commands/README.md) - 14 production-ready slash commands organized across 4 categories
+
+**Context Engineering (7 commands):**
+- /context-engineer:research - Comprehensive implementation planning via research
+- /context-engineer:deep-research - Deep research with multi-agent synthesis
+- /context-engineer:plan - Generate concrete implementation plans from research
+- /context-engineer:execute - Execute plans with gated checks and atomic commits
+- /context-engineer:three-step-workflow - Research-Plan-Execute workflow with memory-bank integration
+- /context-engineer:implementation-from-deep-research - Execute implementation from deep research doc
+- /context-engineer:execute-from-deep-research - Execute from deep research with validation
+
+**Integration (3 commands):**
+- /coderabbitai - Normalize GitHub issues with @coderabbitai analysis
+- /linear-continue-debugging - Systematic debugging for Linear issues
+- /linear-continue-work - Resume Linear work from current state
+
+**Utilities (3 commands):**
+- /context-compact - Intelligently compress context near token limits
+- /smart-git - Enhanced Git workflow utilities
+- /phase-planner - Strategic project planning with phases
+
+**Quality Assurance (1 command):**
+- /fagan-inspection - Formal code inspection for defect analysis
 
 ### Aliases
 - [Claude Code Aliases](alias/) - Useful aliases and integrations including Z.AI GLM 4.5 integration
@@ -98,27 +113,27 @@ See [VALIDATOR_README.md](VALIDATOR_README.md) for complete documentation.
 ### Claude Code Directories (Organized by Category)
 
 #### `commands/` - Slash Commands
-Organized into subdirectories by category:
-- `context engineering/` - Context engineering workflow (Research-Plan-Execute)
-- `quality-assurance/` - QA and testing commands
-- `integration/` - Third-party integration commands
-- `utilities/` - Utility and productivity commands
+Organized into subdirectories by category (14 total):
+- `context engineering/` - Context engineering workflow (7 commands: research, deep-research, plan, execute, three-step-workflow, implementation-from-deep-research, execute-from-deep-research)
+- `quality-assurance/` - QA and testing commands (1 command: fagan-inspection)
+- `integration/` - Third-party integration commands (3 commands: coderabbitai, linear-continue-debugging, linear-continue-work)
+- `utilities/` - Utility and productivity commands (3 commands: context-compact, smart-git, phase-planner)
 
 #### `agents/` - Specialized AI Agents
-Organized into subdirectories by function:
-- `analysis/` - Code analysis and investigation agents
-- `development/` - Code development and refactoring agents
-- `documentation/` - Documentation generation agents
-- `research/` - Research and information gathering agents
-- `security/` - Security analysis agents
-- `performance/` - Performance optimization agents
+Organized into subdirectories by function (16 total):
+- `analysis/` - Code analysis and investigation agents (3 agents)
+- `development/` - Code development and refactoring agents (3 agents)
+- `documentation/` - Documentation generation agents (4 agents)
+- `research/` - Research and information gathering agents (2 agents)
+- `security/` - Security analysis agents (1 agent)
+- `performance/` - Performance optimization agents (1 agent)
 
 #### `hooks/` - Claude Code Hooks
 - `security/` - Security validation hooks
 - `auto-formatter.sh` - Code formatting hook
 - `README.md` - Hook documentation
 
-#### `skills/` - Claude Skills
+#### `skills/` - Claude Skills (1 total)
 - `ontological-documentation/` - Ontological documentation skill
 
 ### Other Directories

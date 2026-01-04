@@ -11,30 +11,27 @@ This is a documentation repository for Claude Code tips, tricks, and productivit
 This repository contains Claude Code special directories organized by category:
 
 ### `commands/` - Slash Commands
-Organized into subdirectories:
-- `python/` - Python development commands
-- `web/` - Web development commands
-- `devops/` - DevOps commands
-- `context engineering/` - Research-Plan-Execute workflow
-- `quality-assurance/` - QA commands
-- `integration/` - Third-party integrations
-- `utilities/` - Utility commands
+Organized into subdirectories (14 total commands):
+- `context engineering/` - Research-Plan-Execute workflow (7 commands)
+- `quality-assurance/` - QA commands (1 command)
+- `integration/` - Third-party integrations (3 commands)
+- `utilities/` - Utility commands (3 commands)
 
 ### `agents/` - Specialized AI Agents
-Organized into subdirectories:
-- `analysis/` - Code analysis agents
-- `development/` - Development agents
-- `documentation/` - Documentation agents
-- `research/` - Research agents
-- `security/` - Security agents
-- `performance/` - Performance agents
+Organized into subdirectories (16 total):
+- `analysis/` - Code analysis agents (3 agents)
+- `development/` - Development agents (3 agents)
+- `documentation/` - Documentation agents (4 agents)
+- `research/` - Research agents (2 agents)
+- `security/` - Security agents (1 agent)
+- `performance/` - Performance agents (1 agent)
 
 ### `hooks/` - Claude Code Hooks
 - `security/` - Security validation hooks
-- `formatting/` - Code formatting hooks
-- `notification/` - Notification hooks
+- `auto-formatter.sh` - Code formatting hook
+- `README.md` - Hook documentation
 
-### `skills/` - Claude Skills
+### `skills/` - Claude Skills (1 total)
 - `ontological-documentation/` - Ontological documentation skill
 
 ## Content Focus Areas
