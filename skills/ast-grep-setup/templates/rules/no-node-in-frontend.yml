@@ -1,0 +1,15 @@
+id: no-node-in-frontend
+language: TypeScript
+severity: error
+message: "Node.js built-in modules cannot be used in frontend code"
+files:
+  - src/frontend/**/*.ts
+  - src/frontend/**/*.tsx
+  - src/client/**/*.ts
+  - src/client/**/*.tsx
+rule:
+  all:
+    - pattern: import $$$ from "$MOD"
+    - matches:
+        source: $MOD
+        regex: ^(fs|path|os|crypto|http|https|net|dgram|dns|cluster|module|vm|child_process|worker_threads)$

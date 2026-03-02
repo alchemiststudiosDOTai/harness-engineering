@@ -1,0 +1,32 @@
+id: no-floating-promises
+language: TypeScript
+severity: error
+message: "Promise is not awaited, returned, or handled with .catch()"
+files:
+  - src/**/*.ts
+  - src/**/*.tsx
+ignores:
+  - new Promise($$$)
+  - Promise.$FUNC($$$)
+rule:
+  all:
+    - pattern: $PROMISE_FUNC($$$ARGS)
+    - has:
+        kind: call_expression
+        pattern: $PROMISE_FUNC($$$ARGS)
+    - not:
+        inside:
+          kind: await_expression
+          stopBy: end
+    - not:
+        inside:
+          kind: return_statement
+          stopBy: end
+    - not:
+        inside:
+          kind: call_expression
+          pattern: $$$.catch($$$)
+          stopBy: end
+  constraints:
+    PROMISE_FUNC:
+      regex: (fetch|axios\.[a-z]+|async|\.then)

@@ -1,0 +1,16 @@
+id: no-empty-catch
+language: TypeScript
+severity: error
+message: "Empty catch block silently swallows errors. Log or re-throw."
+files:
+  - src/**/*.ts
+  - src/**/*.tsx
+rule:
+  all:
+    - pattern: try { $$$TRY } catch ($ERROR) { $$$CATCH }
+    - not:
+        has:
+          kind: statement
+          inside:
+            kind: catch_clause
+            pattern: $$$CATCH

@@ -51,6 +51,7 @@ Knowledge in Slack threads, Google Docs, or engineers' heads is illegible to age
 │   ├── quality-assurance/        # QA and inspection commands
 │   └── utilities/                # Helper commands
 ├── skills/                       # Reusable skill definitions
+│   ├── ast-grep-setup/           # TypeScript ast-grep rules setup
 │   ├── codebase-research/        # Codebase mapping and research
 │   ├── execute-from-plan/        # Execution from research docs
 │   ├── planning-from-research/   # Plan generation

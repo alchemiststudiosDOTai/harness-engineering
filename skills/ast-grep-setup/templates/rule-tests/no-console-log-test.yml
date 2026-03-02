@@ -1,0 +1,20 @@
+id: no-console-log
+valid:
+  - |
+    console.error('Error occurred', err);
+  - |
+    console.warn('Deprecated API used');
+  - |
+    logger.info('User logged in');
+  - |
+    // In test files this is okay
+    console.log('test setup');
+invalid:
+  - |
+    console.log('Debug info');
+  - |
+    function handleClick() {
+      console.log('Button clicked');
+    }
+  - |
+    console.log(userData, config, extraInfo);

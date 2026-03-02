@@ -1,0 +1,34 @@
+id: no-empty-catch
+valid:
+  - |
+    try {
+      riskyOperation();
+    } catch (err) {
+      console.error(err);
+    }
+  - |
+    try {
+      riskyOperation();
+    } catch (err) {
+      logger.error(err);
+      throw err;
+    }
+  - |
+    try {
+      riskyOperation();
+    } catch (err) {
+      // Logged elsewhere
+      metrics.increment('error');
+    }
+invalid:
+  - |
+    try {
+      riskyOperation();
+    } catch (err) {
+    }
+  - |
+    try {
+      riskyOperation();
+    } catch (err) {
+      // Empty catch
+    }

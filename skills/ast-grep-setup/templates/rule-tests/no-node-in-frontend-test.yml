@@ -1,0 +1,17 @@
+id: no-node-in-frontend
+valid:
+  - |
+    import { useState } from 'react';
+  - |
+    import { helper } from '../utils';
+  - |
+    import axios from 'axios';
+invalid:
+  - |
+    import fs from 'fs';
+  - |
+    import path from 'path';
+  - |
+    import { readFile } from 'fs/promises';
+  - |
+    import crypto from 'crypto';

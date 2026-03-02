@@ -1,0 +1,19 @@
+id: no-debugger
+valid:
+  - |
+    function process() {
+      return result;
+    }
+  - |
+    const x = 1;
+    console.log(x);
+invalid:
+  - |
+    function process() {
+      debugger;
+      return result;
+    }
+  - |
+    if (condition) {
+      debugger;
+    }

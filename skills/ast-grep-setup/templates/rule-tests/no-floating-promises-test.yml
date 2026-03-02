@@ -1,0 +1,29 @@
+id: no-floating-promises
+valid:
+  - |
+    const result = await fetch('/api/users');
+  - |
+    return fetch('/api/users');
+  - |
+    fetch('/api/users').catch(err => console.error(err));
+  - |
+    new Promise((resolve) => setTimeout(resolve, 1000));
+  - |
+    Promise.all([fetch('/a'), fetch('/b')]);
+  - |
+    async function load() {
+      return await fetch('/data');
+    }
+invalid:
+  - |
+    function getUsers() {
+      fetch('/api/users');
+    }
+  - |
+    async function load() {
+      fetch('/api/data');
+    }
+  - |
+    function save() {
+      axios.post('/save', data);
+    }
