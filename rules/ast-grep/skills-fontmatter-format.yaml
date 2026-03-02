@@ -1,0 +1,69 @@
+id: skill-fontmatter-format
+language: yaml
+message: SKILL.md frontmatter must match required schema
+severity: error
+rule:
+  kind: block_mapping
+  any:
+    # Required keys: name is required -> fail when name is missing but description exists
+    - all:
+        - has:
+            kind: block_mapping_pair
+            pattern: 'description: $DESC'
+        - not:
+            has:
+              kind: block_mapping_pair
+              pattern: 'name: $NAME'
+
+    # Required keys: description is required -> fail when description is missing but name exists
+    - all:
+        - has:
+            kind: block_mapping_pair
+            pattern: 'name: $NAME'
+        - not:
+            has:
+              kind: block_mapping_pair
+              pattern: 'description: $DESCRIPTION'
+
+    # Fail on any frontmatter key that is not in the allowed list
+    - has:
+        kind: block_mapping_pair
+        not:
+          any:
+            - pattern: 'name: $A'
+            - pattern: 'description: $A'
+            - pattern: 'license: $A'
+            - pattern: 'allowed-tools: $A'
+            - pattern: 'metadata: $A'
+            - pattern: 'compatibility: $A'
+
+    # Name must be kebab-case (lowercase letters, digits, single hyphens only)
+    - has:
+        kind: block_mapping_pair
+        pattern: 'name: $NAME'
+        not:
+          regex: '^[ \t]*name:\s*[a-z0-9]+(?:-[a-z0-9]+)*(\s*)?$'
+
+    # Name cannot be too long (approximation; value > 64 chars)
+    - has:
+        kind: block_mapping_pair
+        pattern: 'name: $NAME'
+        regex: '^[ \t]*name:\s*.{65,}$'
+
+    # description must not include angle brackets
+    - has:
+        kind: block_mapping_pair
+        pattern: 'description: $DESC'
+        regex: '^[ \t]*description:.*[<>]'
+
+    # description cannot exceed 1024 chars (approximation)
+    - has:
+        kind: block_mapping_pair
+        pattern: 'description: $DESC'
+        regex: '^[ \t]*description:\s*.{1025,}$'
+
+    # compatibility cannot exceed 500 chars (approximation)
+    - has:
+        kind: block_mapping_pair
+        pattern: 'compatibility: $COMPAT'
+        regex: '^[ \t]*compatibility:\s*.{501,}$'
