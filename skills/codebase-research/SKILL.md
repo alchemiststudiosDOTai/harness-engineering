@@ -1,7 +1,20 @@
 ---
 name: codebase-research
-description: This skill should be used when mapping or researching a codebase to understand its structure, patterns, and architecture. Use when the user asks to "map the codebase", "research how X works", "find all Y patterns", or needs to understand code organization. Produces factual structural maps—no suggestions, no recommendations, just what exists. Uses ast-grep for structural pattern matching.
-allowed-tools: Bash Read Glob Grep Agent
+description: This skill should be used when mapping or researching a codebase to understand its structure, patterns, and architecture. Use when the user asks to "map the codebase", "research how X works", "find all Y patterns", or needs to understand code organization. Produces factual structural maps in memory-bank/research/—no suggestions, no recommendations, just what exists. Uses ast-grep for structural pattern matching.
+writes-to: memory-bank/research/
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - Agent
+hard-guards:
+  - Facts only - no recommendations or implementation advice
+  - Store research output in memory-bank/research/
+  - Include exact file paths and line numbers where applicable
+  - Do not modify source code while researching
 ---
 
 # Codebase Research
@@ -126,11 +139,15 @@ Wait for ALL research tasks to complete, then compile findings:
 
 ### Step 4: Document Findings
 
-Store in `memory-bank/research/` using format:
+Create `memory-bank/research/YYYY-MM-DD_HH-MM-SS_<topic>.md` using format:
    ```markdown
-   # Research – <TOPIC>
-   **Date:** YYYY-MM-DD
-   **Phase:** Research
+   ---
+   title: "<topic> – Research"
+   phase: Research
+   date: "YYYY-MM-DD HH:MM:SS"
+   owner: "<agent_or_user>"
+   tags: [research, <topic>]
+   ---
 
    ## Structure
    - Directory layout with purposes
@@ -167,3 +184,13 @@ All research output must:
 - State only what was found (no interpretation)
 - Group related findings together
 - Be reproducible (another scan would find the same things)
+
+## Handoff
+
+After writing the research document to `memory-bank/research/`, hand off to `implementation-planner` if the next step is the Plan phase.
+
+Suggested next command:
+
+```text
+/use implementation-planner "memory-bank/research/<file>.md"
+```

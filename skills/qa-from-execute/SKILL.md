@@ -1,10 +1,19 @@
 ---
-name: qa-from-execution
-description: Perform quality assurance on code changes after research-plan-execute workflow. STRICTLY read-only analysis—NO coding, NO fixing, NO execution. Focuses on changed areas only, emphasizing control/data flow correctness.
-allowed-tools: Read Bash
+name: qa-from-execute
+description: Perform quality assurance on code changes after the implementation-planner -> plan-executor workflow. STRICTLY QA only—no coding, no fixes, no source-code changes. Focus on changed areas only, emphasizing control/data flow correctness.
+writes-to: memory-bank/qa/
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+hard-guards:
+  - QA only - no coding or source-code changes
+  - Write QA output to memory-bank/qa/
+  - Review only the scope captured in memory-bank/execute/
 ---
 
-# QA From Execution
+# QA From Execute
 
 Evaluate code changes for correctness, risks, and quality. This skill performs read-only analysis of implemented work, producing a QA report without modifying code.
 
@@ -15,32 +24,32 @@ Evaluate code changes for correctness, risks, and quality. This skill performs r
 | **QA Analysis** | ✅ This skill |
 | **Code Changes** | ❌ NO — Read only |
 | **Bug Fixes** | ❌ NO — Report only |
-| **Execution** | ❌ NO — Analysis only |
+| **Execute** | ❌ NO — Analysis only |
 
-**This skill is STRICTLY for QA evaluation.** Do not write code, do not fix issues, do not execute. Analyze, evaluate, and report.
+**This skill is STRICTLY for QA evaluation.** Do not write code, do not fix issues, and do not perform the Execute phase. Analyze, evaluate, and report.
 
 ## When to Use
 
 Use this skill when:
-- Execution from a plan is complete
+- The Execute phase is complete
 - Code has been written and needs quality evaluation
 - The task is to assess correctness of changes, not modify them
 - Pre-merge or post-implementation review is needed
 
 ## Workflow
 
-### Step 1: Load Execution Context
+### Step 1: Load Execute Context
 
-Locate and read the execution document:
+Locate and read the execution log:
 
-- If a path is provided: Read from `memory-bank/execution/<path>`
-- If a topic is provided: Find the latest matching file in `memory-bank/execution/`
+- If a path is provided: Read from `memory-bank/execute/<path>`
+- If a topic is provided: Find the latest matching file in `memory-bank/execute/`
 
 Extract:
 - Which files were modified
 - Which functions/endpoints were added or changed
 - What the acceptance criteria were
-- Any issues encountered during execution
+- Any issues encountered during the Execute phase
 
 ### Step 2: Identify Changed Areas
 
@@ -186,7 +195,7 @@ Note findings without attempting fixes.
 
 ### Step 6: Write QA Report
 
-Create `memory-bank/QA/YYYY-MM-DD_HH-MM-SS_<topic>_qa.md`:
+Create `memory-bank/qa/YYYY-MM-DD_HH-MM-SS_<topic>_qa.md`:
 
 ```yaml
 ---
@@ -194,7 +203,7 @@ title: "<topic> – QA Report"
 phase: QA
 date: "YYYY-MM-DD HH:MM:SS"
 owner: "<agent_or_user>"
-parent_execution: "memory-bank/execution/<file>.md"
+parent_execute: "memory-bank/execute/<file>.md"
 git_commit_at_qa: "<sha>"
 tags: [qa, <topic>]
 ---
@@ -286,7 +295,7 @@ tags: [qa, <topic>]
 |------------|------|
 | **NO CODE CHANGES** | Never write, modify, or delete code |
 | **NO FIXES** | Report issues, do not implement solutions |
-| **FOCUS ON CHANGES** | Only review files listed in execution log |
+| **FOCUS ON CHANGES** | Only review files listed in the execution log |
 | **READ-ONLY TOOLS** | Use tools that don't modify state |
 | **DOCUMENT FINDINGS** | Every issue must be in the QA report |
 
@@ -303,3 +312,13 @@ If additional analysis is needed:
 | context-synthesis | Identify hidden dependencies affected by changes |
 
 **Without subagents:** Perform manual analysis following the checklist.
+
+## Handoff
+
+After writing the QA report to `memory-bank/qa/`, hand off to the user for disposition.
+
+Suggested next action:
+
+```text
+Review memory-bank/qa/<file>.md and decide whether to accept the work or create follow-up planning.
+```
