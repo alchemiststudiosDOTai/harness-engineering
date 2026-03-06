@@ -34,6 +34,8 @@ Knowledge in Slack threads, Google Docs, or engineers' heads is illegible to age
 
 ```
 .
+├── .claude-plugin/
+│   └── plugin.json             # Claude Code plugin manifest
 ├── docs/
 │   ├── harness-engineering.md    # Full HES v1 specification
 │   └── workflows/
@@ -60,6 +62,28 @@ Knowledge in Slack threads, Google Docs, or engineers' heads is illegible to age
 ├── alias/                        # Model alias configurations
 └── rules/                        # Structural and taste rules
 ```
+
+---
+
+## Installation
+
+### As a Claude Code Plugin
+
+Install this as a plugin to get namespaced skills, agents, and commands:
+
+```bash
+# Install from local directory (for development)
+claude --plugin-dir /path/to/harness-engineering
+
+# Or add to your plugin marketplaces for easy installation
+```
+
+Once installed, skills are available as `/harness-engineering:<skill-name>`:
+- `/harness-engineering:codebase-research` - Map and research codebases
+- `/harness-engineering:implementation-planner` - Generate execution plans
+- `/harness-engineering:plan-executor` - Execute implementation plans
+- `/harness-engineering:qa-from-execute` - QA review of changes
+- `/harness-engineering:ast-grep-setup` - Set up structural linting
 
 ---
 
